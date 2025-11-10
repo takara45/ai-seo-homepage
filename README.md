@@ -1,108 +1,48 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# ai-seo-homepage
 
-# Run and deploy your AI Studio app
+このリポジトリのローカルでの実行方法だけを短くまとめています。
 
-This repository contains everything you need to run the app locally and publish it.
+## 前提
+- Node.js（LTS 推奨）
+- npm（または pnpm/yarn）
 
-View your app in AI Studio: https://ai.studio/apps/drive/1Z4nQFoRx7zb3cXZtLfoQuD8Tf5WyQTkN
+## セットアップ手順（ローカル）
 
-## Run locally
-
-**Prerequisites:** Node.js
-
-1. Install dependencies:
+1. 依存をインストール
 
 ```zsh
 npm install
 ```
 
-2. Set the `GEMINI_API_KEY` in `.env.local` to your Gemini API key (do NOT commit `.env.local`).
+2. 環境変数
 
-3. Run the app for development:
+開発に必要なシークレット（例: `GEMINI_API_KEY` 等）がある場合はプロジェクトルートに `.env.local` を作成して設定してください。
+`.env.local` はリポジトリにコミットしないでください。既に `.gitignore` に含まれていることを確認してください。
+
+```text
+# 例: .env.local
+GEMINI_API_KEY=your_key_here
+```
+
+3. 開発サーバを起動
 
 ```zsh
 npm run dev
 ```
 
-4. Build and preview production bundle locally:
+4. 本番ビルドを作成してローカルで確認
 
 ```zsh
 npm run build
 npm run preview
-# preview typically serves at http://localhost:5173
+# preview は通常 http://localhost:5173 などで確認できます
 ```
 
----
+## 注意
+- `.env.local` などの秘密情報は絶対に公開リポジトリに含めないでください。公開する場合は、環境変数はホスティング側（Vercel 等）の管理画面で設定してください。
+- ビルド成果物は `dist` フォルダに出力されます。
 
-## Publish to GitHub and Deploy to Vercel (CLI)
-
-以下は CLI を使った最短手順です。すべてターミナルで実行します。
-
-前提:
-- GitHub アカウント
-- `gh` (GitHub CLI) がインストール・ログイン済み: `gh auth login`
-- Vercel アカウント
-- `vercel` CLI がインストール・ログイン済み（任意だが推奨）: `npm i -g vercel` と `vercel login`
-
-1) 依存をインストール（未実行の場合）
-
-```zsh
-npm install
-```
-
-2) git 初期化と最初のコミット（まだ初期化していない場合）
-
-```zsh
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-```
-
-3) GitHub にリポジトリを作成して push（`gh` CLI を利用）
-
-```zsh
-# ユーザー名はあなたの GitHub ユーザー名に置き換えてください
-gh repo create hiroshimatakara/ai-seo-homepage --public --source=. --remote=origin --push
-```
-
-もし `gh` が使えない場合は、GitHub のウェブ UI で `ai-seo-homepage` を作成し、以下を実行します:
-
-```zsh
-# HTTPS の例
-git remote add origin https://github.com/YOUR_USERNAME/ai-seo-homepage.git
-git push -u origin main
-```
-
-4) Vercel にデプロイ（CLI または Web UI）
-
-CLI を使う場合:
-
-```zsh
-npm i -g vercel   # 初回のみ
-vercel login
-vercel              # 対話で設定して初回デプロイ
-vercel --prod       # 本番へデプロイ
-```
-
-Vercel の設定で Build Command は `npm run build`、Output Directory は `dist` を指定してください。
-
-5) 環境変数の設定（重要）
-
-`.env.local` にある秘密（例: `GEMINI_API_KEY`）はリポジトリにコミットしないでください。Vercel のダッシュボードで環境変数を追加してください。
-
----
-
-もし私の方で次の作業を行ってほしい場合は指定してください:
-- `gh repo create` 用のスクリプトをワークスペースに追加（ユーザーが実行するだけのシェルスクリプト）
-- Vercel 用の設定ファイルやデプロイ用ドキュメントをさらに整備
-- GitHub に push する前のチェック（.gitignore の確認など）
-
----
-
-Happy coding!
+以上。ローカルでの実行に関する内容のみを記載しています。必要なら、GitHub への公開や Vercel デプロイの手順も別途追加できます。
 <div align="center">
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
